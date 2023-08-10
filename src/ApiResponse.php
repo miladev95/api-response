@@ -4,7 +4,7 @@ namespace Miladev\ApiResponse;
 
 trait ApiResponse
 {
-    public function successResponse($data = [], $message = "Success", $statusCode = 200,$header = [])
+    public function successResponse($data = [], $message = "", $statusCode = 200,$header = [])
     {
         return response([
             'status' => 'success',
@@ -13,7 +13,7 @@ trait ApiResponse
         ], $statusCode,$header);
     }
 
-    public function failResponse($message = "Error", $statusCode = 400, $header = [])
+    public function failResponse($message = "", $statusCode = 400, $header = [])
     {
         return response([
             'status' => 'error',
