@@ -4,20 +4,20 @@ namespace Miladev\ApiResponse;
 
 trait ApiResponse
 {
-    public function successResponse($data, $message = "Success", $statusCode = 200)
+    public function successResponse($data = [], $message = "Success", $statusCode = 200,$header = [])
     {
-        return response()->json([
+        return response([
             'status' => 'success',
             'message' => $message,
             'data' => $data,
-        ], $statusCode);
+        ], $statusCode,$header);
     }
 
-    public function failResponse($message = "Error", $statusCode = 400)
+    public function failResponse($message = "Error", $statusCode = 400, $header = [])
     {
-        return response()->json([
+        return response([
             'status' => 'error',
             'message' => $message,
-        ], $statusCode);
+        ], $statusCode,$header);
     }
 }
