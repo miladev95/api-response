@@ -1,6 +1,6 @@
 {
     "name": "miladev/api-response",
-    "description": "Laravel Api Response",
+    "description": "A simple Laravel package for success and fail response traits.",
     "version" : "1.0",
     "keywords": [
         "Api",
@@ -21,6 +21,7 @@
     "require": {
         "php": ">=5.4.0"
     },
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "Miladev\\ApiResponse\\" : "src/"
