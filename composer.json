@@ -25,15 +25,5 @@
         "psr-4": {
             "Miladev\\ApiResponse\\" : "src/"
         }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Miladev\\ApiResponse\\ApiResponseServiceProvider"
-            ],
-            "aliases": {
-                "Cart": "ApiResponse"
-            }
-        }
     }
 }
