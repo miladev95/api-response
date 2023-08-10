@@ -1,0 +1,39 @@
+{
+    "name": "miladev/api-response",
+    "description": "Laravel Api Response",
+    "version" : "1.0",
+    "keywords": [
+        "Api",
+        "Api Response",
+        "Response",
+        "Laravel Api",
+        "Laravel Api Response",
+        "Laravel"
+    ],
+    "homepage": "https://github.com/miladev95/api-response",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Miladev",
+            "email": "Miladev95@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Miladev\\ApiResponse\\" : "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Miladev\\ApiResponse\\ApiResponseServiceProvider"
+            ],
+            "aliases": {
+                "Cart": "ApiResponse"
+            }
+        }
+    }
+}
