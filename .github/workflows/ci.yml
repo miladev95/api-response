@@ -17,8 +17,9 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
-          extensions: json
+          php-version: '8.2'
+          extensions: |
+            json
           tools: composer:2
 
       - name: Validate composer.json
@@ -41,4 +42,3 @@ jobs:
 
       - name: Run tests
         run: ./vendor/bin/phpunit --configuration phpunit.xml --colors=always
-
