@@ -43,8 +43,12 @@ class ApiResponseTest extends TestCase
         $headers = ['X-Test' => 'value'];
         $resp = $d->successResponse([], '', 200, $headers);
 
-        // in our TestResponse headers are stored as array
-        $this->assertEquals($headers, $resp->headers());
+        // ensure the custom header exists and that Content-Type is set
+        $respHeaders = $resp->headers();
+        $this->assertArrayHasKey('X-Test', $respHeaders);
+        $this->assertEquals('value', $respHeaders['X-Test']);
+
+        $this->assertArrayHasKey('Content-Type', $respHeaders);
+        $this->assertStringContainsString('application/json', $respHeaders['Content-Type']);
     }
 }
-
