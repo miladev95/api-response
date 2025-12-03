@@ -136,7 +136,7 @@ Protected / overridable helpers
 - `prepareHeaders(array $headers): array` — Normalize and add default headers.
 - `createResponse($payload, int $statusCode, array $headers)` — Central response factory (you can override to integrate with custom response objects).
 
-## Testing locally & GitHub Actions CI
+## Testing locally
 
 To run tests locally (from project root):
 
@@ -144,9 +144,5 @@ To run tests locally (from project root):
 composer install --no-interaction --prefer-dist
 ./vendor/bin/phpunit --configuration phpunit.xml
 ```
-
-A GitHub Actions workflow is included at `.github/workflows/ci.yml` which runs tests on PHP 8.2 by default. If your environment uses PHP 8.1, this package also supports PHP >= 8.1 as declared in `composer.json`.
-
-If you want your CI to run on multiple PHP versions, update the workflow matrix to include `8.1` and/or `8.2`.
 
 The tests use `tests/bootstrap.php` which provides a minimal `response()` helper so tests can run without Laravel.
