@@ -143,15 +143,3 @@ composer install
 ```
 
 The repository includes a small test bootstrap that provides a `response()` helper when Laravel isn't present so the tests run without a full framework.
-
-## Continuous Integration
-
-A GitHub Actions workflow is included in `.github/workflows/ci.yml` to run tests on push and pull requests. It sets up PHP, installs composer dependencies, caches the composer cache, and runs PHPUnit.
-
-## Contributing
-
-Contributions are welcome: open issues or PRs. Follow PSR-12 style where possible and include tests for new behavior.
-
-## License
-
-MIT
