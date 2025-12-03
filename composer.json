@@ -1,7 +1,7 @@
 {
     "name": "miladev/api-response",
     "description": "A simple Laravel package for success and fail response traits.",
-    "version" : "1.0",
+    "version" : "1.0.1",
     "keywords": [
         "Api",
         "Api Response",
