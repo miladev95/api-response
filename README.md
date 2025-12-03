@@ -10,7 +10,7 @@ A small, framework-friendly trait that standardizes JSON API responses (success 
 
 ## Requirements
 
-- PHP >= 8.2
+- PHP >= 8.1
 - ext-json
 
 ## Installation
@@ -55,7 +55,7 @@ class TestController extends Controller
 
 ## Overriding payload structure
 
-If you want a different JSON structure (for example to include `meta` or to follow a specification), override `formatSuccessPayload` or `formatErrorPayload` in your class:
+If you want a different JSON structure (for example to include `meta` or to follow a specification), override `formatSuccessPayload` or `formatErrorPayload` in your class. Below is a fuller example showing a custom success payload and preserving type hints.
 
 ```php
 <?php
@@ -66,9 +66,9 @@ class MyApiController
 {
     use ApiResponse;
 
+    // Example: include a `meta` block and always wrap data under `result`
     protected function formatSuccessPayload($data, string $message): array
     {
-        // Example: include a `meta` block and always wrap data under `result`
         return [
             'status' => self::STATUS_SUCCESS,
             'message' => $message,
@@ -79,6 +79,8 @@ class MyApiController
             'result' => $data,
         ];
     }
+
+    // Optionally override formatErrorPayload similarly to include error codes or details
 }
 ```
 
@@ -86,7 +88,7 @@ This keeps the trait's public API (`successResponse`) the same while changing on
 
 ## Overriding headers
 
-If you need to inject or normalize headers (for example, pagination headers), override `prepareHeaders`:
+If you need to inject or normalize headers (for example, pagination headers), override `prepareHeaders`. The example below calls the parent to keep the default Content-Type normalization and then adds pagination headers.
 
 ```php
 <?php
@@ -99,6 +101,7 @@ class PaginatedController
 
     protected function prepareHeaders(array $headers): array
     {
+        // Call parent to normalize and ensure Content-Type
         $headers = parent::prepareHeaders($headers);
 
         // Add pagination metadata into headers
@@ -133,13 +136,17 @@ Protected / overridable helpers
 - `prepareHeaders(array $headers): array` — Normalize and add default headers.
 - `createResponse($payload, int $statusCode, array $headers)` — Central response factory (you can override to integrate with custom response objects).
 
-## Testing locally
+## Testing locally & GitHub Actions CI
 
-If you have the repository checked out locally, run:
+To run tests locally (from project root):
 
 ```bash
-composer install
+composer install --no-interaction --prefer-dist
 ./vendor/bin/phpunit --configuration phpunit.xml
 ```
 
-The repository includes a small test bootstrap that provides a `response()` helper when Laravel isn't present so the tests run without a full framework.
+A GitHub Actions workflow is included at `.github/workflows/ci.yml` which runs tests on PHP 8.2 by default. If your environment uses PHP 8.1, this package also supports PHP >= 8.1 as declared in `composer.json`.
+
+If you want your CI to run on multiple PHP versions, update the workflow matrix to include `8.1` and/or `8.2`.
+
+The tests use `tests/bootstrap.php` which provides a minimal `response()` helper so tests can run without Laravel.
